@@ -6,9 +6,9 @@ export default class App extends Component {
   state = {
     text: '',
     todoItems: [
-      { id: nanoid(), value: 'test', isCompleted: false },
-      { id: nanoid(), value: 'test', isCompleted: false },
-      { id: nanoid(), value: 'test', isCompleted: false },
+      { id: nanoid(), value: 'work hard', isCompleted: false },
+      { id: nanoid(), value: 'buy milk', isCompleted: false },
+      { id: nanoid(), value: 'buy new phone', isCompleted: false },
     ]
   }
 
@@ -42,20 +42,25 @@ export default class App extends Component {
   render() {
     return (
       <Fragment>
-        <div className="container mt-3 d-flex flex-column align-items-center">
-          <div className="border w-50 text-center p-3 border-primary rounded">
-            <h1 className="text-center">ToDo List</h1>
+        <div className="d-flex justify-content-center bg-info">
+          <div className="w-50 text-center p-3">
             <div className="input-group mb-3">
               <input type="text" className="form-control" placeholder="Todo task" aria-label="Recipient's username" aria-describedby="button-addon2" onChange={this.onChanged} />
               <div className="input-group-append">
-                <button className="btn btn-outline-primary" type="button" id="button-addon2" onClick={this.addTodoItems}>Button</button>
+                <button className="btn btn-dark" type="button" id="button-addon2" onClick={this.addTodoItems}>Add</button>
               </div>
             </div>
           </div>
+        </div>
+        <div className="container w-50" >
+          <h3 className="my-4">Todo list</h3>
+          <small className="d-block text-right">There are {this.state.todoItems.length} todos.</small>
           <div className="list-group">
-            {this.state.todoItems.map((item) => {
-              return (<TodoItem completed={item.isCompleted} key={item.id} value={item.value} onDelete={() => this.onDelete(item.id)} onCompleted={() => this.onCompleted(item.id)} />)
-            })}
+            {
+              this.state.todoItems.map((item) => {
+                return (<TodoItem completed={item.isCompleted} key={item.id} value={item.value} onDelete={() => this.onDelete(item.id)} onCompleted={() => this.onCompleted(item.id)} />)
+              })
+            }
           </div>
         </div>
       </Fragment>
