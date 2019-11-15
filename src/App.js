@@ -18,7 +18,6 @@ export default class App extends Component {
   }
 
   onDelete = (id) => {
-    console.log(id)
     const index = this.state.todoItems.findIndex(p => p.id === id)
     const todoItems = [...this.state.todoItems];
     todoItems.splice(index, 1);
